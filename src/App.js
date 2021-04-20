@@ -1,9 +1,9 @@
-import logo from './logo.svg';
 import React,{ Component } from 'react' ;
 import {Navbar, NavbarBrand} from 'reactstrap';
 import Menu from './components/MenuComponent';
 import './App.css';
 import { DISHES } from './shared/dishes';
+import Desk from "./components/DeskDishComponent";
 
 /* on a import Menu de MEnu component
 menu c'est le nom donner a notre fichier a exporter tout a
@@ -12,7 +12,7 @@ fais en bas dans MenuComponent
  le ficher app.js retourne in vue qui est appele dans index.js*/
 
 class App extends Component{
-   constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
             dishes: DISHES
@@ -27,8 +27,8 @@ class App extends Component{
                       <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
                   </div>
               </Navbar>
-              <Menu dishes={this.state.dishes}/>
-
+              <Menu dishes={this.state.dishes} />
+              <Desk/>
           </div>
       );
   }

@@ -1,17 +1,10 @@
-import React,{ Component } from 'react' ;
+import React from 'react' ;
 import {Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
 
 
-class Detaildish extends Component{
-    constructor(props) {
-        super(props);
+  
 
-        this.state ={
-
-        }
-    }
-
-    renderDish(dish) {
+   function RenderDish({dish}) {
         if (dish != null)
             return(
                 <div >
@@ -29,7 +22,7 @@ class Detaildish extends Component{
                 <div></div>
             );
     }
-     renderComments(comments){
+     function RenderComments({comments}){
         if (comments == null) {
             return (<div></div>)
         }
@@ -58,35 +51,34 @@ class Detaildish extends Component{
     }
 
 
-    formatDate(date) {
+    /*formatDate(date) {
         const option = { year: 'numeric', month: 'short', day: 'numeric' };
         const date1 = new Date(date)
         const newdate = date1.toLocaleDateString("en-US", option)
         return newdate;
-    }
+    }*/
 
 
-    render() {
-        const dish = this.props.dish
+    function Detaildish(props) {   
+        const dish = props.dish
         if (dish == null) {
             return (<div></div>);
         }
         else
         {
-            const dishItem = this.renderDish(dish);
-            const dishComment = this.renderComments(dish.comments);
+     
 
             return (
                 <div className='row'>
                     <div className="col-12 col-md-5 m-1">
-                        {dishItem}
+                        <RenderDish dish={props.dish}/>
                     </div>
                     <div className="col-12 col-md-6 m-1">
-                        {dishComment}
+                      < RenderComments comments={props.dish.comments}/>
                     </div>
                 </div>
             );
         }
     }
-    }
-export default Detaildish;
+    
+    export default Detaildish;

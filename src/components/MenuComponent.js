@@ -2,7 +2,6 @@ import React from 'react' ;
 import { Card,CardImg,CardImgOverlay,CardTitle } from 'reactstrap';
 
 
-
     /**renderDish(dish) {
         if (dish != null)
             return(
@@ -66,8 +65,5 @@ import { Card,CardImg,CardImgOverlay,CardTitle } from 'reactstrap';
             </div>
         );
     }
-        
-    
-       
-   
+
 export default Menu;

@@ -1,8 +1,8 @@
 import React from 'react' ;
-import { Card,CardImg,CardImgOverlay,CardTitle } from 'reactstrap';
+import { Card,CardImg,CardImgOverlay,CardTitle,Breadcrumb,BreadcrumbItem } from 'reactstrap';
+import {Link} from "react-router-dom";
 
-
-    /**renderDish(dish) {
+/**renderDish(dish) {
         if (dish != null)
             return(
                 <Card>
@@ -35,16 +35,19 @@ import { Card,CardImg,CardImgOverlay,CardTitle } from 'reactstrap';
          importer 
          dans le return on a fais media lsit pour dire c'est 
          une liste de media 
-         si on ne le fais pas il affichera un seul element */
+         si on ne le fais pas il affichera un seul element
+         <Link to={`/menu/${dish.id}`}> concernant le params pour afficher des information bien precise
+         d'une page*/
 
     function RenderMenuItem({dish,onClick}){
         return(
-            <Card key={dish.id}
-                    onClick={() => onClick(dish.id) }>
-                <CardImg width="100%" src={dish.image} alt={dish.name} />
-                <CardImgOverlay>
-                    <CardTitle>{dish.name}</CardTitle>
-                </CardImgOverlay>
+            <Card>
+                <Link to={`/menu/${dish.id}`}>
+                    <CardImg width="100%" src={dish.image} alt={dish.name} />
+                    <CardImgOverlay>
+                        <CardTitle>{dish.name}</CardTitle>
+                    </CardImgOverlay>
+                </Link>
             </Card>
         );
     }
@@ -52,12 +55,25 @@ import { Card,CardImg,CardImgOverlay,CardTitle } from 'reactstrap';
         const menu = props.dishes.map((dish) => {
             return (
                 <div  className="col-12 col-md-5 m-1">
-                  <RenderMenuItem dish={dish} onClick={props.onClick}/>
+                  <RenderMenuItem dish={dish} />
                 </div>
             );
         });
+
         return (
             <div className="container">
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem>
+                            <Link to={"/home"}>Home</Link>
+                        </BreadcrumbItem>
+                        <BreadcrumbItem active>Menu</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>Menu</h3>
+                        <hr/>
+                    </div>
+                </div>
                 <div className="row">
                     {menu}
                 </div>

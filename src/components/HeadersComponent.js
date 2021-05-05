@@ -3,8 +3,8 @@ import {Navbar, NavbarBrand,Nav,NavbarToggler,Collapse,NavItem,Jumbotron} from '
 import {NavLink} from "react-router-dom";
 
 class  Header extends Component {
-/**React fragment perment d'ecrire assez d'element et
- * de les retourner ensemble forme contracter <> </>
+/**React fragment permet d'ecrire assez d'element et
+ * de les retourner ensemble sous forme contracter <> </>
  *   this.toggleNav=this.toggleNav.bind(this); pour dire que la fonction definis
  en bas correspond a this.toggleNav
  * */
@@ -26,7 +26,7 @@ constructor(props) {
     render() {
         return (
             <React.Fragment>
-                <Navbar dark expand="md">
+                <Navbar dark expand="md" >
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav}/>
                         <NavbarBrand className="mr-auto" href="/">
@@ -43,7 +43,7 @@ constructor(props) {
 
                                 <NavItem>
                                     <NavLink className="nav-link" to="/aboutus">
-                                        <span className="fa fa-info fa-lg"></span> About Us
+                                        <span className="fa fa-info fa-lg"></span> About
                                     </NavLink>
                                 </NavItem>
 

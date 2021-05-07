@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import {Navbar, NavbarBrand,Nav,NavbarToggler,Collapse,NavItem,Jumbotron} from 'reactstrap';
+import {
+    Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
+    Button, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input,
+} from 'reactstrap';
 import {NavLink} from "react-router-dom";
 
 class  Header extends Component {
@@ -7,13 +10,22 @@ class  Header extends Component {
  * de les retourner ensemble sous forme contracter <> </>
  *   this.toggleNav=this.toggleNav.bind(this); pour dire que la fonction definis
  en bas correspond a this.toggleNav
- * */
+ * <
+   innerRef={(input) => this.username=input}> cette methode permet de recuperer directement
+  les données du Dom etant donnée ici on n'a pas de composant controler
+ (un composant controler est un compasant avec une classe un constructeur ou on peut gérer
+ les accessoires) pour recuperer les donnée dans notre état on les recupere directement
+ du DOM
+ this.handleLogin et cette methode affiche les elements recuperer */
 constructor(props) {
     super(props);
 
     this.toggleNav = this.toggleNav.bind(this);
+    this.toggleModal= this.toggleModal.bind(this);
+    this.handleLogin=this.handleLogin.bind(this);
     this.state = {
-        isNavOpen: false
+        isNavOpen: false,
+        isModalOpen:false
     };
 }
 
@@ -21,6 +33,19 @@ constructor(props) {
         this.setState({
             isNavOpen: !this.state.isNavOpen
         });
+    }
+
+    toggleModal(){
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
+    }
+
+    handleLogin(event){
+    this.toggleModal();
+    alert("Username: "+ this.username.value + "Password: " +this.password.value
+    +"Remember: " + this.remember.checked);
+    event.preventDefault();
     }
 
     render() {
@@ -59,6 +84,15 @@ constructor(props) {
                                     </NavLink>
                                  </NavItem>
                             </Nav>
+
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <Button outline onClick={this.toggleModal} >
+                                        <span className="fa fa-sign-in da-lg"></span>
+                                        Login
+                                    </Button>
+                                </NavItem>
+                            </Nav>
                         </Collapse>
                     </div>
                 </Navbar>
@@ -75,6 +109,36 @@ constructor(props) {
                         </div>
                     </div>
                 </Jumbotron>
+
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalBody>
+                        <Form onSubmit={this.handleLogin}>
+                            <FormGroup>
+                                <Label htmlFor="username">Username</Label>
+                                <Input type="text" id="username" name="username"
+                                    innerRef={(input) => this.username=input}/>
+                            </FormGroup>
+
+                            <FormGroup>
+                                <Label htmlFor="password">Password</Label>
+                                <Input type="password" id="password" name="password"
+                                       innerRef={(input) => this.password=input}/>
+                            </FormGroup>
+
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="checkbox" name="remember"
+                                           innerRef={(input) => this.remember=input}/>
+                                    Remember me
+                                </Label>
+                            </FormGroup>
+                            <Button type="submit" value="submit" color="bg-primary">
+                                Login
+                            </Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
             </React.Fragment>
         );
     }

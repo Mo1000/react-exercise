@@ -3,7 +3,7 @@ import Home from "./HomeComponent";
 import About from "./AboutComponent";
 import Menu from './MenuComponent';
 import Contact from "./ContactComponent";
-import Detaildish from "./DetailsDishComponent";
+import Dishdetail from "./DishdetailComponent";
 import Header from "./HeadersComponent";
 import Footer from "./FooterComponent";
 import  {Switch,Route,Redirect,withRouter} from "react-router-dom";
@@ -42,10 +42,6 @@ const mapStateToProps = state => {
     }
 }
 class Main extends Component{
-    constructor(props) {
-        super(props);
-
-    }
 
 
     render() {
@@ -70,7 +66,7 @@ class Main extends Component{
 
         const  DishWithId =({match})=> {
             return(
-                <Detaildish dish={this.props.dishes.filter((dish) => dish.id=== parseInt(match.params.dishId,10))[0]}
+                <Dishdetail dish={this.props.dishes.filter((dish) => dish.id=== parseInt(match.params.dishId,10))[0]}
                 comments={this.props.comments.filter((comment)=> comment.dishId=== parseInt(match.params.dishId,10))}/>
             );
         }

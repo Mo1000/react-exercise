@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import {Link} from "react-router-dom";
 import {Control,LocalForm ,Errors} from "react-redux-form"
-
+import {Loading} from "./LoadingComponent";
 
 
 const required = (val) => val && val.length;
@@ -39,8 +39,10 @@ export class CommentForm extends React.Component {
     }
 
     handleSubmit(values){
-        console.log("Current State is:" +JSON.stringify(values));
-        alert("Current State is: Id " +JSON.stringify(this.props.dishId)+JSON.stringify(values));
+        this.toggleModal()
+        this.props.addComment(this.props.dishId, values.rating, values.yourname, values.comment);
+       /* console.log("Current State is:" +JSON.stringify(values));
+        alert("Current State is: Id " +JSON.stringify(this.props.dishId)+JSON.stringify(values));*/
     }
 
 
@@ -139,7 +141,7 @@ function RenderDish({dish}) {
             <div></div>
         );
 }
-function RenderComments({comments,dishId}){
+function RenderComments({comments,addComment,dishId}){
     if (comments == null) {
         return (<div></div>)
     }
@@ -162,7 +164,7 @@ function RenderComments({comments,dishId}){
                     <CardBody>
                         <CardTitle>Comments</CardTitle>
                         {cmnts}<br/>
-                        <CommentForm  dishId={dishId}/>
+                        <CommentForm  dishId={dishId} addComment={addComment}t/>
                     </CardBody>
                 </Card>
             </div>
@@ -181,10 +183,25 @@ function RenderComments({comments,dishId}){
 
 function Detaildish(props) {
     const dish = props.dish
-    if (dish == null) {
-        return (<div></div>);
+    if (props.isLoading){
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading/>
+                </div>
+            </div>
+        );
     }
-    else
+    else if (props.errMess){
+        return (
+            <div className="container">
+                <div className="row">
+                  <h4>{props.errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else if (dish != null)
     {
 
 
@@ -204,7 +221,8 @@ function Detaildish(props) {
                 <div className="row">
                     <RenderDish dish={props.dish}/>
                     < RenderComments comments={props.comments}
-                                     dishId={props.dish.id}  />
+                                     dishId={props.dish.id}
+                                     addComment={props.addComment}/>
                 </div>
             </div>
         );

@@ -1,4 +1,4 @@
-//import { DISHES } from '../shared/dishes';
+
 import * as ActionTypes from './ActionTypes';
 /**Etant données que les etats sont independant nous pouvons separer les
  fonctions reducers switch c'est pour activer le type d'action
@@ -13,6 +13,7 @@ export  const Dishes = (state={ isLoading:true,
     switch (action.type){
         case ActionTypes.ADD_DISHES:
             return {...state,isLoading: false,errMess: null,dishes: action.payload}
+
         case ActionTypes.DISHES_LOADING:
             return {...state,isLoading: true,errMess: null,dishes: []}
 

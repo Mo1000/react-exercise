@@ -41,7 +41,7 @@ export class CommentForm extends React.Component {
 
     handleSubmit(values){
         this.toggleModal()
-        this.props.addComment(this.props.dishId, values.rating, values.yourname, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.yourname, values.comment);
        /* console.log("Current State is:" +JSON.stringify(values));
         alert("Current State is: Id " +JSON.stringify(this.props.dishId)+JSON.stringify(values));*/
     }
@@ -142,7 +142,7 @@ function RenderDish({dish}) {
             <div></div>
         );
 }
-function RenderComments({comments,addComment,dishId}){
+function RenderComments({comments,postComment,dishId}){
     if (comments == null) {
         return (<div></div>)
     }
@@ -150,7 +150,7 @@ function RenderComments({comments,addComment,dishId}){
         const cmnts = comments.map(comment => {
             return (
                 <div>
-                    <CardText key={comment.id}>{comment.comment}</CardText>
+                    <CardText key={comment.id}><br/>{comment.comment}</CardText>
                     <CardText>-- {comment.author},{new Intl.DateTimeFormat('en-US', {
                         year: 'numeric',
                         month: 'short', day: '2-digit'
@@ -165,7 +165,7 @@ function RenderComments({comments,addComment,dishId}){
                     <CardBody>
                         <CardTitle>Comments</CardTitle>
                         {cmnts}<br/>
-                        <CommentForm  dishId={dishId} addComment={addComment}t/>
+                        <CommentForm  dishId={dishId} postComment={postComment}t/>
                     </CardBody>
                 </Card>
             </div>
@@ -223,7 +223,7 @@ function Detaildish(props) {
                     <RenderDish dish={props.dish}/>
                     < RenderComments comments={props.comments}
                                      dishId={props.dish.id}
-                                     addComment={props.addComment}/>
+                                     postComment={props.postComment}/>
                 </div>
             </div>
         );

@@ -8,12 +8,19 @@ import {
   Media,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
+import { Loading } from "./LoadingComponent";
 
-function RenderLeader({ leader }) {
+function RenderLeader({ leader,isLoading, errMess }) {
+  if (isLoading) {
+    return <Loading />;
+  } else if (errMess) {
+    return <h4>{errMess}</h4>;
+  } else{
   return (
     <Media>
       <Media left>
-        <Media object src={leader.image} alt={leader.name} />
+        <Media object src={baseUrl + leader.image} alt={leader.name} />
       </Media>
       <Media body className="ml-5">
         <Media heading>{leader.name}</Media>
@@ -22,13 +29,16 @@ function RenderLeader({ leader }) {
       </Media>
     </Media>
   );
+  }
 }
 
 function About(props) {
   const leaders = props.leaders.map((leader) => {
     return (
       <div className="col-12 m-1">
-        <RenderLeader leader={leader} />
+        <RenderLeader leader={leader}
+                      isLoading={props.leadersLoading}
+                      errMess={props.leadersErrMess}/>
       </div>
     );
   });

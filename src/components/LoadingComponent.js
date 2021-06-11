@@ -1,5 +1,5 @@
 import React from "react";
-
+/**Pour le chargement*/
 export const Loading = () => {
   return (
     <div className="col-12">

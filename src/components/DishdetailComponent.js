@@ -21,6 +21,7 @@ import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 import {Stagger,FadeTransform,Fade} from "react-animation-components"
 
+/**Contraites pour le formulaire des commentaires*/
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
@@ -31,10 +32,11 @@ export class CommentForm extends React.Component {
 
     this.toggleModal = this.toggleModal.bind(this);
     this.state = {
+      /**Declartion*/
       isModalOpen: false,
     };
   }
-
+  /**ouverture du formulaire */
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen,
@@ -43,6 +45,7 @@ export class CommentForm extends React.Component {
 
   handleSubmit(values) {
     this.toggleModal();
+    /**Poster les commentaires du formulaire sur le server*/
     this.props.postComment(
       this.props.dishId,
       values.rating,
@@ -176,8 +179,8 @@ function RenderComments({ comments, postComment, dishId }) {
 
       const cmnts = comments.map((comment) => {
         return (
-          <div>
             <Fade in>
+          <div>
               <CardText key={comment.id}>
                 <br />
                 {comment.comment}
@@ -190,8 +193,8 @@ function RenderComments({ comments, postComment, dishId }) {
                   day: "2-digit",
                 }).format(new Date(Date.parse(comment.date)))}
               </CardText>
-            </Fade>
           </div>
+            </Fade>
         );
 
       });
@@ -205,7 +208,7 @@ function RenderComments({ comments, postComment, dishId }) {
             {cmnts}
             </Stagger>
             <br />
-            <CommentForm dishId={dishId} postComment={postComment} t />
+            <CommentForm dishId={dishId} postComment={postComment}  />
           </CardBody>
         </Card>
       </div>

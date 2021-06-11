@@ -6,11 +6,6 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
 } from "reactstrap";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
@@ -20,6 +15,7 @@ import { FadeTransform } from "react-animation-components"
  * Pour dire si item designation n'est pas null faire <CardSubtitle>{item.designation}</CardSubtitle>
  * si non si c'est null renvoyé null
  */
+/**affiche les plats les promotions et les dirigeants*/
 function RenderCard({ item, isLoading, errMess }) {
   if (isLoading) {
     return <Loading />;

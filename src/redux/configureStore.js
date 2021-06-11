@@ -4,6 +4,7 @@ import { Dishes } from "./dishes";
 import { Comments } from "./comments";
 import { Leaders } from "./leaders";
 import { Promotions } from "./promotions";
+import { FeedBack} from "./FeedBack";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { InitialFeedback } from "./Forms";
@@ -12,6 +13,8 @@ import { InitialFeedback } from "./Forms";
  maintenant on veut les combiner et les metre dans le magasin
  redux pour les combiner on utilse <
  combineReducers >*/
+/**C'est le magasion on met les différents Types d'action creer dans les differents fichiers (dishes.js
+ * comments.js ...) */
 export const ConfigureStore = () => {
   const store = createStore(
     combineReducers({
@@ -19,9 +22,11 @@ export const ConfigureStore = () => {
       comments: Comments,
       promotions: Promotions,
       leaders: Leaders,
+        FeedBack:FeedBack,
       ...createForms({
         feedback: InitialFeedback,
       }),
+
     }),
     applyMiddleware(thunk, logger)
     /**si on veut utiliser une seul fonction reducer pour

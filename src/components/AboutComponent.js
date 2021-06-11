@@ -10,13 +10,11 @@ import {
 import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
+import {Stagger,Fade} from "react-animation-components"
 
-function RenderLeader({ leader,isLoading, errMess }) {
-  if (isLoading) {
-    return <Loading />;
-  } else if (errMess) {
-    return <h4>{errMess}</h4>;
-  } else{
+
+function RenderLeader({ leader }) {
+
   return (
     <Media>
       <Media left>
@@ -29,19 +27,48 @@ function RenderLeader({ leader,isLoading, errMess }) {
       </Media>
     </Media>
   );
-  }
+
 }
 
 function About(props) {
-  const leaders = props.leaders.map((leader) => {
+/**Permet d'afficher tout les Dirigeants si l'information
+ **/
+const LEADERS =() => {
+  if(props.leadersLoading)
+  {
+    return <Loading/>;
+  }
+else
+  if (props.leadersErrMess) {
+    return <h4>{props.leadersErrMess}</h4>;
+  }
+  else {
+    return(
+    <Media list>
+        <Stagger in>
+ {props.leader.map((leader) => {
     return (
-      <div className="col-12 m-1">
-        <RenderLeader leader={leader}
-                      isLoading={props.leadersLoading}
-                      errMess={props.leadersErrMess}/>
-      </div>
+      <Fade in>
+        <div className="col-12 m-1">
+            <Media>
+              <Media left>
+                <Media object src={baseUrl + leader.image} alt={leader.name} />
+              </Media>
+              <Media body className="ml-5">
+                <Media heading>{leader.name}</Media>
+                <p>{leader.designation}</p>
+                <p>{leader.description}</p>
+              </Media>
+            </Media>
+          
+        </div>
+        </Fade>
+    )
+  })}
+  </Stagger></Media>
     );
-  });
+  }
+}
 
   return (
     <div className="container">
@@ -119,7 +146,7 @@ function About(props) {
           <h2>Corporate Leadership</h2>
         </div>
         <div className="col-12">
-          <Media list>{leaders}</Media>
+         {LEADERS()}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+/**<actionsTypes> using in anothers files> */
 export const ADD_COMMENT = "ADD_COMMENT";
 export const DISHES_LOADING = "DISHES_LOADING";
 export const DISHES_FAILED = "DISHES_FAILED";
@@ -10,3 +11,6 @@ export const PROMOS_FAILED = "PROMOS_FAILED";
 export const LEADER_LOADING = "LEADER_LOADING";
 export const ADD_LEADER = "LEADER_PROMOS";
 export const LEADER_FAILED = "LEADER_FAILED";
+export const ADD_FEEDBACK = "ADD_FEEDBACK";
+export const ADD_FEEDBACKK = "ADD_FEEDBACK";
+export const FEEDBACK_FAILED = "LEADER_FAILED";

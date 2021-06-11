@@ -48,7 +48,7 @@ import { baseUrl } from "../shared/baseUrl";
  <Link to={`/menu/${dish.id}`}> concernant le params pour afficher des information bien precise
  d'une page*/
 
-function RenderMenuItem({ dish, onClick }) {
+function RenderMenuItem({ dish}) {
   return (
     <Card>
       <Link to={`/menu/${dish.id}`}>

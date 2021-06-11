@@ -5,6 +5,8 @@ import * as ActionTypes from "./ActionTypes";
         default :
             return state;
     }> par defaut on retour l'etat meme */
+
+/**Les types  d'Actions mis dans le magasin redux*/
 export const Dishes = (
   state = { isLoading: true, errMess: null, dishes: [] },
   action

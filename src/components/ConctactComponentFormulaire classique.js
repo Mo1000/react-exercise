@@ -60,7 +60,7 @@ import { Link } from "react-router-dom";
  apres ca maintenant les autres fonctions pouront se mettre au travail a savoir si le
  champ est touché (onblur) et si les contrainte des champs sont valider(errors)
  */
-class ContactForm extends Component {
+class ContactForm1 extends Component {
   constructor(props) {
     super(props);
 
@@ -338,4 +338,4 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+export default ContactForm1;

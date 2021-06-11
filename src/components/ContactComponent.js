@@ -5,10 +5,11 @@ import {
   Button,
   Label,
   Col,
-  Row,
+  Row, Card, CardImg, CardBody, CardTitle, CardText,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Control, Form, Errors } from "react-redux-form";
+
 
 /**<
  const required = (val) => val && val.length; >
@@ -34,12 +35,23 @@ class Contact extends Component {
   }
 
   handleSubmit(values) {
-    console.log("Current State is:" + JSON.stringify(values));
-    alert("Current State is:" + JSON.stringify(values));
+    /**Afficher dans une alert les  fichier ecrit dans le Server*/
+    this.props.postFeedback(values.firstname,values.lastname,
+        values.telnum,values.email,values.agree,values.contactType,
+        values.message);
+
+  /*    const Feed = this.props.Feedback.map((feed) =>{
+      alert("Current State is:" + JSON.stringify(feed));
+    });*/
+   // console.log("Current State is:" + JSON.stringify(values));
+
+    alert("Current State is:" + JSON.stringify(values) + "id:" +JSON.stringify(this.props.Feedback.length +1 ))
     this.props.resetFeedbackForm();
   }
 
+
   render() {
+
     return (
       <div className="container">
         <div className="row">

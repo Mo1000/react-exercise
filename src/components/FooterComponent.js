@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**Bas de page*/
 function Footer(proos) {
   return (
     <div className="footer">

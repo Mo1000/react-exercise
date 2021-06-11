@@ -6,6 +6,7 @@ import * as ActionTypes from "./ActionTypes";
         default :
             return state;
     }> par defaut on retour l'etat meme */
+/**Actions for comments*/
 export const Comments = (
   state = {
     errMess: null,
